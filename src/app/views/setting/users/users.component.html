@@ -1,0 +1,172 @@
+<form>
+
+
+  <div class="form-group form-inline">
+    Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+    <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    <button type="button" class="btn btn-success btn-sm" style="margin-left: 50 px; float: right;"> Add </button>
+  </div>
+
+
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" sortable="name" (sort)="onSort($event)">Country</th>
+        <th scope="col" sortable="area" (sort)="onSort($event)">Area</th>
+        <th scope="col" sortable="population" (sort)="onSort($event)">Population</th>
+        <th scope="col">Actions</th>
+
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let country of countries$ | async">
+
+        <th scope="row">{{ country.id }}</th>
+
+        <td>
+          <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"
+            style="width: 20px">
+          <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+        </td>
+
+        <td>
+          <ngb-highlight [result]="country.area | number" [term]="service.searchTerm"></ngb-highlight>
+        </td>
+
+        <td>
+          <ngb-highlight [result]="country.population | number" [term]="service.searchTerm"></ngb-highlight>
+        </td>
+
+
+        <td>
+          <button type="button" class="btn btn-success btn-sm" style="margin-left: 10px;"> Edit </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Delete
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+
+</form>
+
+
+
+
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+
+
+
+
+      <div class="modal-body">
+
+        <div>
+          <div class="card">
+
+            <div class="card-header card-header-danger">
+              <strong>User Info </strong>
+            </div>
+
+            <div class="card-body">
+              <div class="px-5">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <form [fromGroup]="userForm" (ngSubmit)="onSubmit">
+
+                        <div class="form-group row ">
+
+                          <label class="col-md-2 col-form-label lable" for="text-input">Country
+                          </label>              
+                          <div class="col-md-4">
+                            <input type="text" id="name" name="name" class="form-control input" formControlName="Country">
+                          </div>
+
+
+                          <label class="col-md-2 col-form-label lable" for="text-input">Area
+                          </label>
+                          <div class="col-md-4">
+                            <input type="text" id="name" name="name" class="form-control input" formControlName="Country">
+                          </div>
+
+                          
+                          <label class="col-md-2 col-form-label lable" for="text-input">Area
+                          </label>
+                          <div class="col-md-4">
+                            <input type="text" id="name" name="name" class="form-control input" formControlName="Country">
+                          </div>
+
+
+
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary float-right " [disabled]="!stampForm.valid"
+                          style="margin-left: 20px;" type="submit" *ngIf="save===true"><i
+                            class="fa fa-dot-circle-o"></i>
+                          Add</button>
+
+                        <button class="btn btn-primary float-right" type="button" *ngIf="save===false"
+                          style="margin-left: 20px;" (click)="onEdit()" data-dismiss="modal">
+                          Edit</button>
+
+                        <button type="reset" class="btn btn-danger float-right" style="margin-left: 20px;"
+                          data-dismiss="modal">
+                          <i class="fa fa-dot-circle-o" *ngIf="save===false"></i>
+                          Cancel</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
