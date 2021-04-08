@@ -8,6 +8,7 @@ import { NgbdSortableHeader, SortEvent } from './sortable.directive';
 import { CountryService } from './country.service';
 import { Country } from './country';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -17,11 +18,20 @@ import { FormGroup } from '@angular/forms';
 @Component(
   {selector: 'app-users', 
   templateUrl: './users.component.html',
+  styleUrls: ['./Users.component.scss'],
    providers: [CountryService, DecimalPipe]})
 
 
 export class UsersComponent {
 
+
+  ///
+
+
+
+
+
+  //////////////////////////////
   userForm: FormGroup;
   
   countries$: Observable<Country[]>;
@@ -29,9 +39,10 @@ export class UsersComponent {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: CountryService ) {
+  constructor(public service: CountryService , private router:Router) {
     this.countries$ = service.countries$;
     this.total$ = service.total$;
+    
   }
   
   onSort({column, direction}: SortEvent) {
@@ -46,6 +57,15 @@ export class UsersComponent {
     this.service.sortDirection = direction;
   }
 
+
+  
+
+
+  ///////
+  openEditor(){
+    this.router.navigateByUrl('/users/editor');
+
+  }
 
 }
 

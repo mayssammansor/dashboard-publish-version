@@ -1,39 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ServicesComponent } from './services/services.component';
+import { EdituserComponent } from './users/component/editor/edituser/edituser.component';
 
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'list',
+    component: UsersComponent,
     data: {
-      title: 'Setting'
-    },
-    children: [
-      {
-        path: '',
-        redirectTo: 'users'
-      },
-
-      {
-        path: 'users',
-        component: UsersComponent,
-        data: {
-          title: 'Users'
-        }
-      },
-
-      {
-        path: 'services',
-        component: ServicesComponent,
-        data: {
-          title: 'Services'
-        }
-      }
-
-    ]
-  }
+      title: 'Users'
+    }
+  },
+  {
+    path: 'editor',
+    component: EdituserComponent,
+    data: {
+      title: 'User Editor'
+    }
+  },
 ];
 
 @NgModule({

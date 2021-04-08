@@ -26,7 +26,7 @@ export const routes: Routes = [
     children: [
 
       {
-        path: 'setting',
+        path: 'users',
         loadChildren: () => import('./views/setting/setting.module').then(m => m.SettingModule)
       },
 

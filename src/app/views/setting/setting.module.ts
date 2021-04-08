@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbdSortableHeader } from './users/sortable.directive';
 import { ServicesComponent } from './services/services.component';
+import { EdituserComponent } from './users/component/editor/edituser/edituser.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ServicesComponent } from './services/services.component';
     NgbdSortableHeader,
     UsersComponent,
     ServicesComponent,
+    EdituserComponent,
   ],
   exports: [UsersComponent],
   bootstrap: [UsersComponent]
