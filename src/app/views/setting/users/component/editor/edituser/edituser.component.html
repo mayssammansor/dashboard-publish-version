@@ -41,14 +41,14 @@
                     </div>
   
                     <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="hf-SyriatelId">Syriatel Id</label>
+                      <label class="col-md-3 col-form-label" >Employee Id</label>
                       <div class="col-md-8">
-                        <input type="text"  required class="form-control" placeholder="Syriatel Id"                               
+                        <input type="text"  required class="form-control" placeholder="Employee Id"                               
                                maxlength="10">
-                        <span class="help-block alert-danger" *ngIf="fSyriatelId.errors && fSyriatelId.errors.pattern">numbers only</span>
+                        <span class="help-block alert-danger" >numbers only</span>
                       </div>
                       <div class="col-md-1">
-                        <span class="help-block" *ngIf="fSyriatelId.invalid" style="color:red">*</span>
+                        <span class="help-block" style="color:red">*</span>
                       </div>
                     </div>
   
@@ -56,10 +56,8 @@
                       <label class="col-md-3 col-form-label" for="f-Pass">Password</label>
                       
                       <div class="col-md-8">
-                        <input type="password" id="f-Pass" required name="f-Pass" class="form-control" placeholder="Password.." [(ngModel)]="editor.Password"
-                               #fPass="ngModel" [class.is-invalid]="(fPass.invalid && fPass.touched)|| (fPass.touched && weakPass) "
-                               maxlength="100" (keyup)="calcWeakPass()" />
-                        <span class="help-block alert-danger" *ngIf="fPass.touched && weakPass">must conssist of a number, an upper case and a lower case 6 characters</span>
+                        <input type="password" id="f-Pass" required name="f-Pass" class="form-control" placeholder="Password.."  maxlength="100"  />
+                        <span class="help-block alert-danger">must conssist of a number, an upper case and a lower case 6 characters</span>
                       </div>
   
                       <div class="col-md-1">
